@@ -351,13 +351,13 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   }
 
   @override
-  bool didPop(T result) {
+  bool didPop(T? result) {
     assert(_controller != null,
         '$runtimeType.didPop called before calling install() or after calling dispose().');
     assert(!_transitionCompleter.isCompleted,
         'Cannot reuse a $runtimeType after disposing it.');
 
-    _result = result;
+    _result! = result!;
     _cancelTimer();
 
     if (_wasDismissedBySwipe) {
@@ -370,7 +370,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
       _controller.reverse();
     }
 
-    return super.didPop(result);
+    return super.didPop(result!);
   }
 
   void _configureTimer() {
@@ -415,7 +415,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
     assert(!_transitionCompleter.isCompleted,
         'Cannot dispose a $runtimeType twice.');
     _controller?.dispose();
-    _transitionCompleter.complete(_result);
+    _transitionCompleter.complete(_result!);
     super.dispose();
   }
 
