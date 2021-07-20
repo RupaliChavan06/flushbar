@@ -170,9 +170,9 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
         _wasDismissedBySwipe = true;
 
         if (isCurrent) {
-          navigator.pop();
+          navigator!.pop();
         } else {
-          navigator.removeRoute(this);
+          navigator!.removeRoute(this);
         }
       },
       child: _getFlushbar(),
@@ -225,7 +225,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
     return AnimationController(
       duration: flushbar.animationDuration,
       debugLabel: debugLabel,
-      vsync: navigator,
+      vsync: navigator!,
     );
   }
 
@@ -246,8 +246,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   }
 
   Animation<double> createBlurFilterAnimation() {
-    if (flushbar.routeBlur == null) return null;
-
+   
     return Tween(begin: 0.0, end: flushbar.routeBlur).animate(
       CurvedAnimation(
         parent: _controller,
@@ -260,9 +259,8 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
     );
   }
 
-  Animation<Color> createColorFilterAnimation() {
-    if (flushbar.routeColor == null) return null;
-
+  Animation<Color?> createColorFilterAnimation() {
+    
     return ColorTween(begin: Colors.transparent, end: flushbar.routeColor)
         .animate(
       CurvedAnimation(
@@ -304,7 +302,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
         _onStatusChanged(currentStatus);
 
         if (!isCurrent) {
-          navigator.finalizeRoute(this);
+          navigator!.finalizeRoute(this);
           assert(overlayEntries.isEmpty);
         }
         break;
