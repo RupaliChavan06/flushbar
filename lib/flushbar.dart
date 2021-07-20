@@ -14,44 +14,44 @@ typedef void OnTap(Flushbar flushbar);
 /// A highly customizable widget so you can notify your user when you fell like he needs a beautiful explanation.
 class Flushbar<T> extends StatefulWidget {
   Flushbar(
-      {Key key,
-      String title,
-      String message,
-      Widget titleText,
-      Widget messageText,
-      Widget icon,
+      {Key? key,
+      String? title,
+      String? message,
+      Widget? titleText,
+      Widget? messageText,
+      Widget? icon,
       bool shouldIconPulse = true,
-      double maxWidth,
+      double? maxWidth,
       EdgeInsets margin = const EdgeInsets.all(0.0),
       EdgeInsets padding = const EdgeInsets.all(16),
       double borderRadius = 0.0,
-      Color borderColor,
+      Color? borderColor,
       double borderWidth = 1.0,
       Color backgroundColor = const Color(0xFF303030),
-      Color leftBarIndicatorColor,
-      List<BoxShadow> boxShadows,
-      Gradient backgroundGradient,
-      Widget mainButton,
-      OnTap onTap,
-      Duration duration,
+      Color? leftBarIndicatorColor,
+      List<BoxShadow> boxShadows = [],
+      Gradient? backgroundGradient,
+      Widget? mainButton,
+      OnTap? onTap,
+      Duration? duration,
       bool isDismissible = true,
       FlushbarDismissDirection dismissDirection =
           FlushbarDismissDirection.VERTICAL,
       bool showProgressIndicator = false,
-      AnimationController progressIndicatorController,
-      Color progressIndicatorBackgroundColor,
-      Animation<Color> progressIndicatorValueColor,
+      AnimationController? progressIndicatorController,
+      Color? progressIndicatorBackgroundColor,
+      Animation<Color>? progressIndicatorValueColor,
       FlushbarPosition flushbarPosition = FlushbarPosition.BOTTOM,
       FlushbarStyle flushbarStyle = FlushbarStyle.FLOATING,
       Curve forwardAnimationCurve = Curves.easeOutCirc,
       Curve reverseAnimationCurve = Curves.easeOutCirc,
       Duration animationDuration = const Duration(seconds: 1),
-      FlushbarStatusCallback onStatusChanged,
+      FlushbarStatusCallback? onStatusChanged,
       double barBlur = 0.0,
       bool blockBackgroundInteraction = false,
-      double routeBlur,
-      Color routeColor,
-      Form userInputForm})
+      double? routeBlur,
+      Color? routeColor,
+      Form? userInputForm})
       : this.title = title,
         this.message = message,
         this.titleText = titleText,
@@ -240,9 +240,6 @@ class Flushbar<T> extends StatefulWidget {
   /// When this future finishes, it is guaranteed that Flushbar was dismissed.
   Future<T> dismiss([T result]) async {
     // If route was never initialized, do nothing
-    if (_flushbarRoute == null) {
-      return null;
-    }
 
     if (_flushbarRoute.isCurrent) {
       _flushbarRoute.navigator.pop(result);
