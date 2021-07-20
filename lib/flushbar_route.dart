@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class FlushbarRoute<T> extends OverlayRoute<T> {
-  final Flushbar flushbar;
+  final Flushbar? flushbar;
   final Builder _builder;
   final Completer<T> _transitionCompleter = Completer<T>();
   final FlushbarStatusCallback _onStatusChanged;
@@ -21,8 +21,8 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   FlushbarStatus currentStatus;
 
   FlushbarRoute({
-    @required this.flushbar,
-    RouteSettings settings,
+    required this.flushbar,
+    RouteSettings? settings,
   })  : _builder = Builder(builder: (BuildContext innerContext) {
           return GestureDetector(
             child: flushbar,
@@ -427,11 +427,11 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
 }
 
 FlushbarRoute showFlushbar<T>(
-    {@required BuildContext context, @required Flushbar flushbar}) {
+    {required BuildContext? context, required Flushbar? flushbar}) {
   assert(flushbar != null);
 
   return FlushbarRoute<T>(
-    flushbar: flushbar,
+    flushbar: flushbar!,
     settings: RouteSettings(name: FLUSHBAR_ROUTE_NAME),
   );
 }
